@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Megabonk.top - 在混沌浪潮中生存下来！</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-bg: #121212;
+            --color-text: #ffffff;
+            --color-primary: #6c5ce7;
+            --color-primary-hover: #7b6df2;
+            --color-accent: #ff9e44;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.2rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--color-primary-hover);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .steam-btn {
+            background: linear-gradient(135deg, #1b2838, #2a475e);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .steam-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .language-selector {
+            background: var(--color-bg);
+            color: var(--color-text);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-bg) 0%, #1a1a2e 100%);
+        }
+
+        .hero h1 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text);
+            padding: 1rem 2rem;
+            border: 2px solid var(--color-primary);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: var(--color-bg);
+        }
+
+        .section-title {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--color-accent);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .feature-card p {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* News Section */
+        .news {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, var(--color-bg) 100%);
+        }
+
+        .news-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .news-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .news-item h3 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+
+        .news-date {
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Guides Section */
+        .guides {
+            padding: 80px 0;
+            background: var(--color-bg);
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .guide-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .guide-card h3 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        /* Trailer Section */
+        .trailer {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--color-bg) 0%, #1a1a2e 100%);
+            text-align: center;
+        }
+
+        .trailer p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-preview {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            background: #1a1a2e;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                             url('./assets/images/video-thumbnail.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-preview:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .play-button {
+            width: 68px;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .play-button:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .play-icon {
+            color: white;
+            font-size: 1.2rem;
+            margin-left: 2px;
+            font-weight: bold;
+        }
+
+        .preview-text {
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        .preview-text h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: white;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        .preview-text p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+
+        /* Footer */
+        .footer {
+            background: #0a0a0a;
+            padding: 3rem 0 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--color-primary);
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            color: var(--color-text);
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .features-grid,
+            .guides-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#top" class="logo" data-i18n="nav.home">Megabonk.top</a>
+                <ul class="nav-menu">
+                    <li><a href="#top" data-i18n="nav.home">首页</a></li>
+                    <li><a href="#features" data-i18n="nav.features">游戏特色</a></li>
+                    <li><a href="#news" data-i18n="nav.news">最新消息</a></li>
+                    <li><a href="#guides" data-i18n="nav.guides">攻略指南</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <select class="language-selector" onchange="changeLanguage(this.value)">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="nl">Nederlands</option>
+                        <option value="cs">Čeština</option>
+                    </select>
+                    <a href="https://steamcommunity.com/app/3405340/discussions/" target="_blank" class="steam-btn" data-i18n="nav.community">Steam社区</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="top" class="hero">
+        <div class="container">
+            <h1 data-i18n="hero.title">在《Megabonk》的混沌浪潮中生存下来！</h1>
+            <p data-i18n="hero.subtitle">《Megabonk》是一款roguelike生存游戏，你需要在随机生成的地图中杀出重围，对抗成群的敌人和Boss。一路收集loot，提升角色等级，升级武器，尽可能活得更久！它被玩家誉为《Vampire Survivors》和《Risk of Rain 2》的完美结合体，在发售后两天内就吸引了数万玩家。</p>
+            <div class="hero-buttons">
+                <a href="#guides" class="btn-primary" data-i18n="hero.guides">查看攻略 →</a>
+                <a href="#trailer" class="btn-secondary" data-i18n="hero.trailer">观看实机演示</a>
+            </div>
+            <img src="assets/images/header.jpg" alt="Megabonk游戏宣传图" class="hero-image" data-i18n="[alt]hero.imgAlt">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title" data-i18n="features.title">为什么选择 MEGABONK？</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 data-i18n="feature1.title">🦴 20个独特角色</h3>
+                    <p data-i18n="feature1.desc">击败敌人获取XP来升级！打倒的越多，XP越多。每次升级都是随机的，并且有不同稀有度，让每次游戏都独一无二！</p>
+                </div>
+                <div class="feature-card">
+                    <h3 data-i18n="feature2.title">⚔️ 70+道具组合</h3>
+                    <p data-i18n="feature2.desc">在游戏中完成240个挑战任务，解锁20个拥有独特技能的角色和70多种提供不同组合与协同效果的道具。</p>
+                </div>
+                <div class="feature-card">
+                    <h3 data-i18n="feature3.title">🏆 史诗级Boss战</h3>
+                    <p data-i18n="feature3.desc">找到关卡Boss，将其击败，解锁地图的下一个区域！每张地图都有3个阶段，每个阶段的难度都呈指数级增加。你能到达最终关卡的Boss吗？</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="news">
+        <div class="container">
+            <h2 class="section-title" data-i18n="news.title">最新消息</h2>
+            <div class="news-grid">
+                <div class="news-item">
+                    <h3 data-i18n="news.1.title">《Megabonk》首周更新补丁v1.01发布</h3>
+                    <div class="news-date"><time>2025-09-22</time></div>
+                    <p data-i18n="news.1.desc">修复了部分道具协同效果失效的问题，优化了性能表现。</p>
+                </div>
+                <div class="news-item">
+                    <h3 data-i18n="news.2.title">游戏已正式登陆Steam！</h3>
+                    <div class="news-date"><time>2025-09-18</time></div>
+                    <p data-i18n="news.2.desc">游戏已于2025年9月18日正式登陆Steam，首周购买享15%折扣。</p>
+                </div>
+                <div class="news-item">
+                    <h3 data-i18n="news.3.title">《Megabonk》Steam charts 表现强劲</h3>
+                    <div class="news-date"><time>2025-09-20</time></div>
+                    <p data-i18n="news.3.desc">发售仅两天，游戏已吸引数万玩家，并迅速登上Steam排行榜，其 addictive and fun gameplay experience 获得了玩家社区的积极反馈。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guides Section -->
+    <section id="guides" class="guides">
+        <div class="container">
+            <h2 class="section-title" data-i18n="guides.title">攻略指南</h2>
+            <div class="guides-grid">
+                <div class="guide-card">
+                    <h3 data-i18n="guide.1.title">新手入门：前10分钟生存指南</h3>
+                    <p data-i18n="guide.1.desc">教你如何快速上手，选择初始角色和道具，避免早期暴毙。</p>
+                </div>
+                <div class="guide-card">
+                    <h3 data-i18n="guide.2.title">全角色解锁条件一览</h3>
+                    <p data-i18n="guide.2.desc">想用所有角色？收藏这篇攻略，轻松解锁全部20个英雄。</p>
+                </div>
+                <div class="guide-card">
+                    <h3 data-i18n="guide.3.title">强力Build推荐：火焰剑与回血流</h3>
+                    <p data-i18n="guide.3.desc">尝试火焰剑配上回血道具的组合，可以从Boss手里硬生生扛过好几波攻击。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trailer Section -->
+    <section id="trailer" class="trailer">
+        <div class="container">
+            <h2 class="section-title" data-i18n="trailer.title">游戏预告片</h2>
+            <p data-i18n="trailer.desc">观看下方视频，感受《Megabonk》这款被玩家誉为《Vampire Survivors》与《Risk of Rain 2》完美融合的疯狂战斗氛围！</p>
+            <div class="video-container">
+                <div class="video-preview" id="videoPreview" onclick="openYouTubeVideo()">
+                    <div class="preview-overlay">
+                        <div class="play-button">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <div class="preview-text">
+                            <h3 data-i18n="trailer.previewTitle">观看《Megabonk》预告片</h3>
+                            <p data-i18n="trailer.previewDesc">点击播放按钮观看完整预告片</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-i18n="footer.title">Megabonk.top</h4>
+                    <p data-i18n="footer.subtitle">玩家粉丝站 - 非官方攻略与资讯站</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer.disclaimer.title">免责声明</h4>
+                    <p data-i18n="footer.disclaimer.text">本网站为玩家自发创建的粉丝站，与游戏开发商无任何关联。所有内容仅供学习交流使用。</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="footer.contact.title">联系我们</h4>
+                    <p><a href="mailto:solentgg94@gmail.com" data-i18n="footer.contact.email">solentgg94@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 <span data-i18n="footer.copyright">Megabonk.top</span> | <span data-i18n="footer.legal">玩家粉丝站</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- i18next CDN -->
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector/dist/umd/i18nextBrowserLanguageDetector.js"></script>
+
+    <!-- Translation Resources -->
+    <script type="application/json" id="translation-resources">
+    {
+        "en": {
+            "translation": {
+                "nav.home": "Home",
+                "nav.features": "Features",
+                "nav.news": "News",
+                "nav.guides": "Guides",
+                "nav.community": "Steam Community",
+                "hero.title": "Survive the Chaotic Tide of Megabonk!",
+                "hero.subtitle": "Megabonk is a roguelike survival game where you must fight your way through randomly generated maps, battling hordes of enemies and bosses. Collect loot, level up your character, upgrade weapons, and survive as long as possible! It's been praised by players as the perfect fusion of Vampire Survivors and Risk of Rain 2, attracting tens of thousands of players within just two days of release.",
+                "hero.guides": "View Guides →",
+                "hero.trailer": "Watch Gameplay Demo",
+                "hero.imgAlt": "Megabonk Game Poster",
+                "features.title": "Why Choose MEGABONK?",
+                "feature1.title": "🦴 20 Unique Characters",
+                "feature1.desc": "Defeat enemies to gain XP and level up! The more you defeat, the more XP you get. Each level up is random with different rarities, making every game unique!",
+                "feature2.title": "⚔️ 70+ Item Combinations",
+                "feature2.desc": "Complete 240 challenge tasks in the game to unlock 20 characters with unique skills and 70+ items that provide different combinations and synergy effects.",
+                "feature3.title": "🏆 Epic Boss Battles",
+                "feature3.desc": "Find the level boss, defeat it, and unlock the next area of the map! Each map has 3 stages, with exponentially increasing difficulty. Can you reach the final boss?",
+                "news.title": "Latest News",
+                "news.1.title": "Megabonk First Week Update Patch v1.01 Released",
+                "news.1.desc": "Fixed issues with some item synergy effects not working and optimized performance.",
+                "news.2.title": "Game Officially Launched on Steam!",
+                "news.2.desc": "The game officially launched on Steam on September 18, 2025, with a 15% discount for the first week.",
+                "news.3.title": "Megabonk Steam Charts Strong Performance",
+                "news.3.desc": "Just two days after release, the game has attracted tens of thousands of players and quickly climbed the Steam charts, with its addictive and fun gameplay experience receiving positive feedback from the player community.",
+                "guides.title": "Strategy Guides",
+                "guide.1.title": "Beginner's Guide: First 10 Minutes Survival Guide",
+                "guide.1.desc": "Learn how to get started quickly, choose initial characters and items, and avoid early death.",
+                "guide.2.title": "Complete Character Unlock Conditions",
+                "guide.2.desc": "Want to use all characters? Bookmark this guide to easily unlock all 20 heroes.",
+                "guide.3.title": "Powerful Build Recommendation: Fire Sword & Life Steal",
+                "guide.3.desc": "Try the combination of fire sword with life steal items to tank several waves of attacks from bosses.",
+                "trailer.title": "Gameplay Demo",
+                "trailer.desc": "Watch the gameplay demo below to experience the chaotic combat atmosphere of Megabonk, praised by players as the perfect fusion of Vampire Survivors and Risk of Rain 2!",
+                "trailer.previewTitle": "Watch Megabonk Gameplay",
+                "trailer.previewDesc": "Click the play button to watch the gameplay demo",
+                "trailer.gameSubtitle": "Chaotic Survival Action Game",
+                "footer.title": "Megabonk.top",
+                "footer.subtitle": "Player Fan Site - Unofficial Guide & News",
+                "footer.disclaimer.title": "Disclaimer",
+                "footer.disclaimer.text": "This website is a player-created fan site with no affiliation to the game developers. All content is for educational and communication purposes only.",
+                "footer.contact.title": "Contact Us",
+                "footer.contact.email": "solentgg94@gmail.com",
+                "footer.copyright": "Megabonk.top",
+                "footer.legal": "Player Fan Site"
+            }
+        },
+        "zh": {
+            "translation": {
+                "nav.home": "首页",
+                "nav.features": "游戏特色",
+                "nav.news": "最新消息",
+                "nav.guides": "攻略指南",
+                "nav.community": "Steam社区",
+                "hero.title": "在《Megabonk》的混沌浪潮中生存下来！",
+                "hero.subtitle": "《Megabonk》是一款roguelike生存游戏，你需要在随机生成的地图中杀出重围，对抗成群的敌人和Boss。一路收集loot，提升角色等级，升级武器，尽可能活得更久！它被玩家誉为《Vampire Survivors》和《Risk of Rain 2》的完美结合体，在发售后两天内就吸引了数万玩家。",
+                "hero.guides": "查看攻略 →",
+                "hero.trailer": "观看实机演示",
+                "hero.imgAlt": "Megabonk游戏宣传图",
+                "features.title": "为什么选择 MEGABONK？",
+                "feature1.title": "🦴 20个独特角色",
+                "feature1.desc": "击败敌人获取XP来升级！打倒的越多，XP越多。每次升级都是随机的，并且有不同稀有度，让每次游戏都独一无二！",
+                "feature2.title": "⚔️ 70+道具组合",
+                "feature2.desc": "在游戏中完成240个挑战任务，解锁20个拥有独特技能的角色和70多种提供不同组合与协同效果的道具。",
+                "feature3.title": "🏆 史诗级Boss战",
+                "feature3.desc": "找到关卡Boss，将其击败，解锁地图的下一个区域！每张地图都有3个阶段，每个阶段的难度都呈指数级增加。你能到达最终关卡的Boss吗？",
+                "news.title": "最新消息",
+                "news.1.title": "《Megabonk》首周更新补丁v1.01发布",
+                "news.1.desc": "修复了部分道具协同效果失效的问题，优化了性能表现。",
+                "news.2.title": "游戏已正式登陆Steam！",
+                "news.2.desc": "游戏已于2025年9月18日正式登陆Steam，首周购买享15%折扣。",
+                "news.3.title": "《Megabonk》Steam charts 表现强劲",
+                "news.3.desc": "发售仅两天，游戏已吸引数万玩家，并迅速登上Steam排行榜，其 addictive and fun gameplay experience 获得了玩家社区的积极反馈。",
+                "guides.title": "攻略指南",
+                "guide.1.title": "新手入门：前10分钟生存指南",
+                "guide.1.desc": "教你如何快速上手，选择初始角色和道具，避免早期暴毙。",
+                "guide.2.title": "全角色解锁条件一览",
+                "guide.2.desc": "想用所有角色？收藏这篇攻略，轻松解锁全部20个英雄。",
+                "guide.3.title": "强力Build推荐：火焰剑与回血流",
+                "guide.3.desc": "尝试火焰剑配上回血道具的组合，可以从Boss手里硬生生扛过好几波攻击。",
+                "trailer.title": "实机演示",
+                "trailer.desc": "观看下方实机演示，感受《Megabonk》这款被玩家誉为《Vampire Survivors》与《Risk of Rain 2》完美融合的疯狂战斗氛围！",
+                "trailer.previewTitle": "观看《Megabonk》实机演示",
+                "trailer.previewDesc": "点击播放按钮观看完整实机演示",
+                "trailer.gameSubtitle": "混沌生存动作游戏",
+                "footer.title": "Megabonk.top",
+                "footer.subtitle": "玩家粉丝站 - 非官方攻略与资讯站",
+                "footer.disclaimer.title": "免责声明",
+                "footer.disclaimer.text": "本网站为玩家自发创建的粉丝站，与游戏开发商无任何关联。所有内容仅供学习交流使用。",
+                "footer.contact.title": "联系我们",
+                "footer.contact.email": "solentgg94@gmail.com",
+                "footer.copyright": "Megabonk.top",
+                "footer.legal": "玩家粉丝站"
+            }
+        },
+        "es": {
+            "translation": {
+                "nav.home": "Inicio",
+                "nav.features": "Características",
+                "nav.news": "Noticias",
+                "nav.guides": "Guías",
+                "nav.community": "Comunidad Steam",
+                "hero.title": "¡Sobrevive a la Marea Caótica de Megabonk!",
+                "hero.subtitle": "Megabonk es un juego de supervivencia roguelike donde debes luchar a través de mapas generados aleatoriamente, enfrentando hordas de enemigos y jefes. ¡Recolecta botín, sube de nivel, mejora armas y sobrevive el mayor tiempo posible!",
+                "hero.guides": "Ver Guías →",
+                "hero.trailer": "Ver Demo de Gameplay",
+                "hero.imgAlt": "Póster del Juego Megabonk",
+                "features.title": "¿Por Qué Elegir MEGABONK?",
+                "feature1.title": "🦴 20 Personajes Únicos",
+                "feature1.desc": "¡Derrota enemigos para ganar XP y subir de nivel! Cuanto más derrotes, más XP obtienes. Cada subida de nivel es aleatoria con diferentes rarezas.",
+                "feature2.title": "⚔️ 70+ Combinaciones de Objetos",
+                "feature2.desc": "Completa 240 tareas de desafío para desbloquear 20 personajes con habilidades únicas y 70+ objetos con diferentes combinaciones.",
+                "feature3.title": "🏆 Batallas Épicas contra Jefes",
+                "feature3.desc": "¡Encuentra al jefe del nivel, derrótalo y desbloquea la siguiente área del mapa! Cada mapa tiene 3 etapas con dificultad exponencialmente creciente.",
+                "news.title": "Últimas Noticias",
+                "news.1.title": "Parche de Actualización v1.01 de Megabonk Lanzado",
+                "news.1.desc": "Se corrigieron problemas con efectos de sinergia de objetos y se optimizó el rendimiento.",
+                "news.2.title": "¡El Juego se Lanzó Oficialmente en Steam!",
+                "news.2.desc": "El juego se lanzó oficialmente en Steam el 18 de septiembre de 2025, con 15% de descuento en la primera semana.",
+                "news.3.title": "Megabonk Tiene un Rendimiento Fuerte en Steam Charts",
+                "news.3.desc": "Solo dos días después del lanzamiento, el juego ha atraído a decenas de miles de jugadores y rápidamente subió en las listas de Steam.",
+                "guides.title": "Guías de Estrategia",
+                "guide.1.title": "Guía para Principiantes: Guía de Supervivencia de los Primeros 10 Minutos",
+                "guide.1.desc": "Aprende cómo empezar rápidamente, elegir personajes iniciales y objetos, y evitar la muerte temprana.",
+                "guide.2.title": "Condiciones de Desbloqueo de Todos los Personajes",
+                "guide.2.desc": "¿Quieres usar todos los personajes? Guarda esta guía para desbloquear fácilmente a los 20 héroes.",
+                "guide.3.title": "Recomendación de Build Poderosa: Espada de Fuego y Robo de Vida",
+                "guide.3.desc": "Prueba la combinación de espada de fuego con objetos de robo de vida para resistir varias oleadas de ataques de jefes.",
+                "trailer.title": "Demo de Gameplay",
+                "trailer.desc": "Mira la demo de gameplay de abajo para experimentar la atmósfera de combate caótica de Megabonk, elogiado por los jugadores como la fusión perfecta de Vampire Survivors y Risk of Rain 2.",
+                "trailer.previewTitle": "Ver Gameplay de Megabonk",
+                "trailer.previewDesc": "Haz clic en el botón de reproducción para ver la demo completa",
+                "trailer.gameSubtitle": "Juego de Acción de Supervivencia Caótica",
+                "footer.title": "Megabonk.top",
+                "footer.subtitle": "Sitio de Fans - Guías y Noticias No Oficiales",
+                "footer.disclaimer.title": "Descargo de Responsabilidad",
+                "footer.disclaimer.text": "Este sitio web es un sitio de fans creado por jugadores sin afiliación con los desarrolladores del juego. Todo el contenido es solo para fines educativos y de comunicación.",
+                "footer.contact.title": "Contáctanos",
+                "footer.contact.email": "solentgg94@gmail.com",
+                "footer.copyright": "Megabonk.top",
+                "footer.legal": "Sitio de Fans"
+            }
+        },
+        "nl": {
+            "translation": {
+                "nav.home": "Home",
+                "nav.features": "Functies",
+                "nav.news": "Nieuws",
+                "nav.guides": "Gidsen",
+                "nav.community": "Steam Gemeenschap",
+                "hero.title": "Overleef de Chaotische Vloed van Megabonk!",
+                "hero.subtitle": "Megabonk is een roguelike survival game waar je je weg moet vechten door willekeurig gegenereerde kaarten, vechtend tegen hordes vijanden en bazen. Verzamel loot, level je karakter op, upgrade wapens en overleef zo lang mogelijk!",
+                "hero.guides": "Bekijk Gidsen →",
+                "hero.trailer": "Bekijk Gameplay Demo",
+                "hero.imgAlt": "Megabonk Game Poster",
+                "features.title": "Waarom MEGABONK Kiezen?",
+                "feature1.title": "🦴 20 Unieke Karakters",
+                "feature1.desc": "Versla vijanden om XP te krijgen en te levelen! Hoe meer je verslaat, hoe meer XP je krijgt. Elke level up is willekeurig met verschillende zeldzaamheden.",
+                "feature2.title": "⚔️ 70+ Item Combinaties",
+                "feature2.desc": "Voltooi 240 uitdagingstaken in het spel om 20 karakters met unieke vaardigheden en 70+ items met verschillende combinaties te ontgrendelen.",
+                "feature3.title": "🏆 Epische Baas Gevechten",
+                "feature3.desc": "Vind de level baas, versla hem en ontgrendel het volgende gebied van de kaart! Elke kaart heeft 3 fasen met exponentieel toenemende moeilijkheid.",
+                "news.title": "Laatste Nieuws",
+                "news.1.title": "Megabonk Eerste Week Update Patch v1.01 Uitgebracht",
+                "news.1.desc": "Problemen met item synergie effecten opgelost en prestaties geoptimaliseerd.",
+                "news.2.title": "Spel Officieel Gelanceerd op Steam!",
+                "news.2.desc": "Het spel werd officieel gelanceerd op Steam op 18 september 2025, met 15% korting voor de eerste week.",
+                "news.3.title": "Megabonk Steam Charts Sterke Prestatie",
+                "news.3.desc": "Slechts twee dagen na release heeft het spel tienduizenden spelers aangetrokken en snel de Steam charts beklommen.",
+                "guides.title": "Strategie Gidsen",
+                "guide.1.title": "Beginners Gids: Eerste 10 Minuten Overleving Gids",
+                "guide.1.desc": "Leer hoe je snel kunt beginnen, kies initiële karakters en items, en vermijd vroege dood.",
+                "guide.2.title": "Alle Karakter Ontgrendelings Voorwaarden",
+                "guide.2.desc": "Wil je alle karakters gebruiken? Bewaar deze gids om gemakkelijk alle 20 helden te ontgrendelen.",
+                "guide.3.title": "Krachtige Build Aanbeveling: Vuur Zwaard & Leven Steal",
+                "guide.3.desc": "Probeer de combinatie van vuur zwaard met leven steal items om verschillende golven van aanvallen van bazen te doorstaan.",
+                "trailer.title": "Gameplay Demo",
+                "trailer.desc": "Bekijk de gameplay demo hieronder om de chaotische gevechtsatmosfeer van Megabonk te ervaren, geprezen door spelers als de perfecte fusie van Vampire Survivors en Risk of Rain 2.",
+                "trailer.previewTitle": "Bekijk Megabonk Gameplay",
+                "trailer.previewDesc": "Klik op de afspeelknop om de volledige demo te bekijken",
+                "trailer.gameSubtitle": "Chaotisch Overlevings Actie Spel",
+                "footer.title": "Megabonk.top",
+                "footer.subtitle": "Fan Site - Onofficiële Gidsen & Nieuws",
+                "footer.disclaimer.title": "Disclaimer",
+                "footer.disclaimer.text": "Deze website is een door spelers gemaakte fan site zonder banden met de game ontwikkelaars. Alle inhoud is alleen voor educatieve en communicatiedoeleinden.",
+                "footer.contact.title": "Contacteer Ons",
+                "footer.contact.email": "solentgg94@gmail.com",
+                "footer.copyright": "Megabonk.top",
+                "footer.legal": "Fan Site"
+            }
+        },
+        "cs": {
+            "translation": {
+                "nav.home": "Domů",
+                "nav.features": "Funkce",
+                "nav.news": "Novinky",
+                "nav.guides": "Průvodci",
+                "nav.community": "Steam Komunita",
+                "hero.title": "Přežijte Chaotický Příliv Megabonk!",
+                "hero.subtitle": "Megabonk je roguelike survival hra, kde se musíte probít náhodně generovanými mapami, bojovat proti hordám nepřátel a bossům. Sbírejte loot, zvyšujte úroveň postavy, vylepšujte zbraně a přežijte co nejdéle!",
+                "hero.guides": "Zobrazit Průvodce →",
+                "hero.trailer": "Sledovat Gameplay Demo",
+                "hero.imgAlt": "Megabonk Game Poster",
+                "features.title": "Proč Zvolit MEGABONK?",
+                "feature1.title": "🦴 20 Unikátních Postav",
+                "feature1.desc": "Porazte nepřátele, abyste získali XP a zvýšili úroveň! Čím více porazíte, tím více XP získáte. Každé zvýšení úrovně je náhodné s různými vzácnostmi.",
+                "feature2.title": "⚔️ 70+ Kombinace Předmětů",
+                "feature2.desc": "Dokončete 240 výzev ve hře, abyste odemkli 20 postav s unikátními schopnostmi a 70+ předměty s různými kombinacemi.",
+                "feature3.title": "🏆 Epické Boje s Bossy",
+                "feature3.desc": "Najděte bosse úrovně, porazte ho a odemkněte další oblast mapy! Každá mapa má 3 fáze s exponenciálně rostoucí obtížností.",
+                "news.title": "Nejnovější Zprávy",
+                "news.1.title": "Megabonk První Týden Update Patch v1.01 Vydán",
+                "news.1.desc": "Opraveny problémy s efekty synergií předmětů a optimalizován výkon.",
+                "news.2.title": "Hra Oficiálně Spuštěna na Steamu!",
+                "news.2.desc": "Hra byla oficiálně spuštěna na Steamu 18. září 2025, s 15% slevou pro první týden.",
+                "news.3.title": "Megabonk Steam Charts Silný Výkon",
+                "news.3.desc": "Pouze dva dny po vydání hra přilákala desítky tisíc hráčů a rychle vystoupala na Steam žebříčky.",
+                "guides.title": "Strategické Průvodce",
+                "guide.1.title": "Průvodce pro Začátečníky: Průvodce Prvních 10 Minut Přežití",
+                "guide.1.desc": "Naučte se, jak rychle začít, vybrat počáteční postavy a předměty a vyhnout se brzké smrti.",
+                "guide.2.title": "Podmínky Odemčení Všech Postav",
+                "guide.2.desc": "Chcete použít všechny postavy? Uložte si tento průvodce pro snadné odemčení všech 20 hrdinů.",
+                "guide.3.title": "Doporučení Silného Buildu: Ohnivý Meč a Krádež Života",
+                "guide.3.desc": "Zkuste kombinaci ohnivého meče s předměty krádeže života, abyste vydrželi několik vln útoků od bossů.",
+                "trailer.title": "Gameplay Demo",
+                "trailer.desc": "Sledujte gameplay demo níže a zažijte chaotickou bojovou atmosféru Megabonk, chválenou hráči jako perfektní fúze Vampire Survivors a Risk of Rain 2.",
+                "trailer.previewTitle": "Sledovat Megabonk Gameplay",
+                "trailer.previewDesc": "Klikněte na tlačítko přehrát pro zobrazení celé demo",
+                "trailer.gameSubtitle": "Chaotická Akční Hra o Přežití",
+                "footer.title": "Megabonk.top",
+                "footer.subtitle": "Fan Stránka - Neoficiální Průvodci & Novinky",
+                "footer.disclaimer.title": "Prohlášení o Vyloučení Odpovědnosti",
+                "footer.disclaimer.text": "Tato webová stránka je fan stránka vytvořená hráči bez spojení s vývojáři hry. Veškerý obsah je pouze pro vzdělávací a komunikační účely.",
+                "footer.contact.title": "Kontaktujte Nás",
+                "footer.contact.email": "solentgg94@gmail.com",
+                "footer.copyright": "Megabonk.top",
+                "footer.legal": "Fan Stránka"
+            }
+        }
+    }
+    </script>
+
+    <!-- i18next Implementation -->
+    <script>
+        const resources = JSON.parse(document.getElementById('translation-resources').textContent);
+
+        i18next
+            .use(i18nextBrowserLanguageDetector)
+            .init({
+                detection: { order: ['localStorage', 'navigator'], caches: ['localStorage'] },
+                resources: resources,
+                fallbackLng: 'zh',
+                debug: false
+            }, function(err, t) {
+                updateContent();
+            });
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (key.startsWith('[alt]')) {
+                    element.alt = i18next.t(key.substring(5));
+                } else {
+                    element.innerHTML = i18next.t(key);
+                }
+            });
+        }
+
+        function changeLanguage(lng) {
+            i18next.changeLanguage(lng).then(updateContent);
+        }
+
+        i18next.on('languageChanged', () => { updateContent(); });
+
+        // Open YouTube video function
+        function openYouTubeVideo() {
+            window.open('https://www.youtube.com/watch?v=to6Gc5g2Spw', '_blank');
+        }
+
+        // Check if background image loads successfully
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoPreview = document.getElementById('videoPreview');
+            if (videoPreview) {
+                // Create a test image to check if the file exists
+                const testImg = new Image();
+                testImg.onload = function() {
+                    console.log('✅ Video thumbnail image loaded successfully');
+                };
+                testImg.onerror = function() {
+                    console.log('❌ Video thumbnail image failed to load');
+                    console.log('Trying to load: ./assets/images/video-thumbnail.jpg');
+                };
+                testImg.src = './assets/images/video-thumbnail.jpg';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
